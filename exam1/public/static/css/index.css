@@ -1,0 +1,169 @@
+html {
+      font-size: 14px;
+    }
+    header {
+      z-index: 99;
+      width: 100%;
+      padding: 0.5rem;
+      background: #1ba9ba;
+      display: flex;
+      position: fixed;
+      justify-content: space-between;
+      line-height: 2.28rem;
+      color: #fff
+    }
+    .page-title {
+      font-size: 1.28rem;
+    }
+    #date-header {
+      z-index: 99;
+      position: fixed;
+      width: 100%;
+      top: 3.43rem;
+      background: #1ba9ba;
+    }
+
+    .date {
+      width: 83%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .date-item {
+      /* display: inline-block; */
+      text-align: center;
+      width: 18%;
+    }
+    .list-calendar {
+      height: 100%;
+      padding-bottom: 3px;
+      display: flex;
+      justify-content: space-between
+    }
+    .more-date {
+      /* width: 17%; */
+      padding-top: 7px;
+      text-align: center;
+      width: 16.6%;
+    }
+    p {
+      font-size: 0.8rem;
+      color: #fff;
+      margin-bottom:0;
+    }
+    .fa-calendar {
+      color: white;
+      font-size: 1.4rem;
+      margin-bottom: 7px;
+    }
+    .date-active p{
+      background: white;
+      color: #1ba9ba
+    }
+
+    .contianer {
+      position: absolute;
+      top: 100px;
+      width: 100%;
+    }
+
+    .flight-list {
+      list-style: none;
+      padding-left: 0
+    }
+    .flight-item {
+      height: 100px;
+      display: flex;
+      padding: 10px 15px;
+      border-bottom: 1px solid  rgba(197, 197, 197, 0.3)
+    }
+
+    .left-info {
+      width: 70%;
+    }
+
+    .airport-info {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .time {
+      font-size: 1.5rem;
+      color: #333
+    }
+
+    .company-info, .airport, .discount {
+      color: #999;
+      font-size: 0.8rem;
+    }
+
+    .company-info {
+      margin-top: 10px;
+    }
+
+    .right-info {
+      width: 29%;
+      text-align: right
+    }
+    .price {
+      color: #ff8205;
+      font-size: 1.5rem;
+    }
+    .discount {
+      margin-bottom: 5px;
+    }
+    .activity{
+      color: white;
+      background: rgb(255, 130, 5);
+    }
+
+    .footer {
+      z-index: 99;
+      position: fixed;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      height: 49px;
+      width: 100%;
+      border-top: 1px solid rgba(197, 197, 197, 0.3);
+      background: rgb(248, 248, 248);
+    }
+    .footer> div {
+      width: 25%;
+    }
+
+    .footer> .active> p{
+      color:  #1ba9ba;
+    }
+    .footer p {
+      height: 18px;
+      margin-bottom: 4px;
+      color: #999;
+      text-align: center;
+    }
+
+    .footer span {
+      font-size: 18px;
+    }
+
+    .go-top {
+      z-index: 99;
+      display: none;
+      position: fixed;
+      padding-top: 3px;
+      width: 45px;
+      height: 45px;
+      bottom: 120px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid white;
+      border-radius: 100%;
+      text-align: center;
+    }
+
+    .top-line {
+      width: 12px;
+      height: 2px;
+      margin: 0 auto 2px;
+      background-color: #888;
+    }

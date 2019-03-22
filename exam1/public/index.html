@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>exam1</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/layui/css/layui.css">
+  <link rel="stylesheet" href="/static/css/index.css">
+</head>
+
+<body>
+  <div>
+    <header>
+      <span class="left-icon ">
+        <i class="fa fa-angle-left fa-2x"></i>
+      </span>
+      <div class="page-title">成都 —> 北京</div>
+      <span class="right-icon">
+        <i class="fa fa-search fa-lg"></i>
+      </span>
+    </header>
+    <!-- 日期头部 -->
+    <div id='date-header'>
+      <section class="list-calendar">
+        <div class="date">
+        </div>
+        <div class="more-date">
+          <span class="fa fa-calendar fa-2x"></span>
+          <p>更多日期</p>
+        </div>
+      </section>
+
+    </div>
+    <!-- 航班列表 -->
+    <div class="contianer">
+      <ul class="flight-list">
+      </ul>
+    </div>
+    <div class="footer">
+      <div>
+        <p>
+          <span class="fa fa-filter fa-2x"></span>
+        </p>
+        <p>筛选</p>
+      </div>
+      <div class="active">
+        <p>
+          <span class="glyphicon glyphicon-sort"></span>
+        </p>
+        <p>推荐排序</p>
+      </div>
+      <div>
+        <p>
+          <span class="fa fa-clock-o fa-2x"></span>
+        </p>
+        <p>时间</p>
+      </div>
+      <div>
+        <p>
+          <span class="fa fa-cny fa-2x"></span>
+        </p>
+        <p>价格</p>
+      </div>
+    </div>
+    <div class="go-top">
+      <div class="top-line"></div>
+      <div style="margin-top:-2px">
+        <span class="fa fa-long-arrow-up fa-2x" style="font-size: 1.4rem;color: #888;"></span>
+      </div>
+      <p style="color:#888">顶部</p>
+    </div>
+  </div>
+
+
+  <script src="/static/js/jquery-3.3.1.min.js"></script>
+  <script src="/static/layui/layui.all.js"></script>
+  <script>
+    $(document).ready(function () {
+      layui.use(['layer'], function () {
+        var layer = layui.layer
+      });
+      let loading = layer.load()
+      $.ajax({
+        url: '/api/flightInfo',
+        success: function (data) {
+          data.flightInfo.map(item => {
+            createFlightItem(item)
+          })
+          data.trendPrice.map(item => {
+            createDateItem(item)
+          })
+          layer.close(loading)
+        },
+        error: function (e) {
+          console.error('请求航班信息出错了~请检查cookie');
+        }
+      })
+
+
+      //设置定时器,scroll事件完成后调用show方法
+      let timer;
+      let timeout = 450;
+      $(window).scroll(function () {
+        //滑动Y轴距离大于 110显示 '顶部' 按钮
+        window.scrollY > 110 ? $('.go-top').show() : $('.go-top').hide();
+        clearTimeout(timer);
+        hide();
+        timer = setTimeout(show, timeout);
+      })
+    })
+
+    function createFlightItem(data) {
+      let {
+        depAirport,
+        arrAirport,
+        depTerminal,
+        arrTerminal,
+        arrTime,
+        depTime,
+        depAirportCode,
+        arrAirportCode,
+        shortName,
+        shortCarrier,
+        planeFullType
+      } = data.binfo
+
+      let {
+        minPrice,
+        discountStr,
+        reducePriceDesc,
+        cabinDesc,
+        code
+      } = data
+
+      let li =
+        ` <li class="flight-item">
+          <div class="left-info">
+            <div class="airport-info">
+              <div class="from-info">
+                <p class="time">${depTime}</p>
+                <p class="airport">${depAirport}${depTerminal}</p>
+              </div>
+              <div style="line-height: 47px;color: #999">——————></div>
+              <div class="to-info">
+                <p class="time">${arrTime}</p>
+                <p class="airport">${arrAirport}${arrTerminal}</p>
+              </div>
+            </div>
+            <div class="company-info">
+              <span class="plane-type">${shortName}${code} ${planeFullType}</span>
+            </div>
+          </div>
+          <div class="right-info">
+            <p class="price">￥${minPrice}</p>
+            <p class="discount">经济舱${discountStr}</p>
+            <p>
+              <span class="activity">${reducePriceDesc ? reducePriceDesc: '下单减5元'}</span>
+            </p>
+          </div>
+        </li> `
+      
+      $('.flight-list').append(li)
+    }
+
+    function createDateItem(data) {
+      let div =
+      `
+        <div class="date-item">
+            <p>${data.date}</p>
+            <p>${data.day}</p>
+            <p>￥${data.price}</p>
+        </div>
+      `
+      $('.date').append(div)
+    }
+
+    //隐藏上方日期头部和 footer
+    function hide() {
+      $('#date-header, .footer').animate({
+        height: 'hide',
+      }, 200, function () {
+        $('#date-header, .footer').hide();
+      })
+    }
+
+    //显示上方日期头部和 footer
+    function show() {
+      $('#date-header,.footer').animate({
+        height: 'show',
+      }, 200, function () {
+        $('#date-header, .footer').show();
+      })
+    }
+
+  </script>
+</body>
+
+</html>

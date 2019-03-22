@@ -1,0 +1,106 @@
+.container {
+  margin: 0 auto;
+  height: 400px;
+  width: 600px;
+}
+h1 {
+  text-align: center;
+}
+
+.list {
+  margin: 0 auto;
+  /* padding: 0 10px; */
+  width: 85%;
+  border: 1px solid rgba(197, 197, 197, 0.5);
+  border-radius: 5px;
+}
+
+.item {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 6px 0 15px;
+  border-bottom: 1px solid rgba(197, 197, 197, 0.5);
+}
+
+
+.del {
+  float: right;
+  font-size: 12px;
+  color: rgba(197, 197, 197, 0.9);
+}
+
+.desc {
+  margin-left: 5px;
+}
+
+.finished {
+  background: #E0F0D6;
+  color: #497F45;
+  text-decoration: line-through;
+}
+
+
+.todo {
+  margin:25px 0 25px 65px;
+}
+
+.text {
+  margin-left: 20px;
+  padding: 3px 8px;
+  width: 81%;
+  border-radius: 4px;
+  border: 1px solid rgba(197, 197, 197, 0.9);
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.btn {
+  float: right;
+  margin-right: 43px;
+  font-size: 16px;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background: #3190e8;
+  border: none;
+}
+
+input[type=checkbox] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    border: 1px solid #d8d8d8;
+    background: white; 
+
+  }
+
+input[type=checkbox] {
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 15px;
+  height: 12px;
+  position: relative;
+}
+
+input[type=checkbox]:checked:after {
+  position: absolute;
+  width: 10px;
+  height: 15px;
+  top: 0;
+  content: " ";
+  background-color: #3190e8;
+  color: #fff;
+  display: inline-block;
+  visibility: visible;
+  padding: 0px 3px;
+  border-radius: 3px;
+}
+
+input[type=checkbox]:checked:after {
+  content: "✓";
+  font-size: 12px;
+}
